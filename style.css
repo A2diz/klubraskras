@@ -346,14 +346,11 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
 }
 
-.book-info .btn-review,
-.book-info .btn-outline {
+.book-buttons {
   margin-top: auto;
-}
-
-.book-info .btn-review {
-  margin-top: auto;
-  margin-bottom: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .book-info h3 {
