@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Обзор · Убийство за чашечкой чая</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .review-hero {
+      position: relative;
+      padding: 5rem 0 4rem;
+      text-align: center;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #a8d8f0, #c9b8f0, #f4b8c8, #f9e4a0);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+    .review-hero-back {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .review-hero-back:hover { opacity: 1; }
+    .review-hero-book {
+      display: inline-block;
+      width: 140px;
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(80,50,120,0.25);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.2s both;
+    }
+    .review-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.7s 0.3s both;
+    }
+    .review-hero h1 em {
+      font-style: italic;
+      color: var(--white);
+      text-shadow: 0 2px 20px rgba(140,100,180,0.3);
+    }
+    .review-hero-meta {
+      display: inline-flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.5s both;
+    }
+    .review-hero-meta span {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(6px);
+      padding: 0.4em 1.1em;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .participants { padding: 5rem 0; background: var(--white); }
+    .participants h2 { text-align: center; margin-bottom: 3.5rem; }
+    .participant-block { margin-bottom: 5rem; }
+    .participant-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .participant-avatar {
+      width: 3.5rem; height: 3.5rem; border-radius: 50%;
+      background: linear-gradient(135deg, var(--lavender), var(--rose));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(140,100,180,0.2);
+    }
+    .participant-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--ink); }
+    .participant-name span {
+      display: block; font-family: 'Nunito', sans-serif;
+      font-size: 0.82rem; font-weight: 600; color: var(--ink-soft);
+      margin-top: 0.1rem; letter-spacing: 0.05em;
+    }
+    .gallery-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft);
+      margin-bottom: 1rem; display: block;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.9rem; margin-bottom: 2.5rem;
+    }
+    .gallery-item {
+      position: relative; border-radius: 14px; overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--mist), var(--lilac));
+      box-shadow: 0 4px 20px rgba(100,80,140,0.1);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .gallery-item:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 35px rgba(100,80,140,0.22); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.4rem;
+    }
+    .gallery-placeholder-icon { font-size: 2rem; opacity: 0.35; }
+    .gallery-placeholder-num { font-size: 0.75rem; font-weight: 700; opacity: 0.4; color: var(--ink); }
+    .favorites-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .favorites-col h4 {
+      font-family: 'Nunito', sans-serif; font-size: 0.85rem;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .favorites-col.loved h4 { color: #c9667a; }
+    .favorites-col.meh h4 { color: #8b80a8; }
+    .fav-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .fav-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--mist); border-radius: 12px;
+      padding: 0.7rem 1rem; border: 1.5px solid var(--lilac);
+      font-size: 0.88rem; color: var(--ink-soft);
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .fav-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(100,80,140,0.12); }
+    .fav-thumb {
+      width: 3rem; height: 3rem; border-radius: 8px; overflow: hidden;
+      flex-shrink: 0; background: linear-gradient(135deg, var(--lavender), var(--peach));
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .fav-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .fav-item-info strong { display: block; color: var(--ink); font-size: 0.85rem; }
+    .participant-divider { border: none; border-top: 2px dashed var(--lilac); margin: 4rem 0; opacity: 0.6; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(30,20,50,0.92);
+      backdrop-filter: blur(10px);
+      z-index: 1000; align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img {
+      max-width: 80vw; max-height: 85vh;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      object-fit: contain;
+      transition: opacity 0.15s;
+    }
+    .lightbox-btn {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.25);
+      color: white; font-size: 1.4rem;
+      width: 3.2rem; height: 3.2rem; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; transition: background 0.2s; z-index: 1001;
+    }
+    .lightbox-btn:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-prev { left: 1.5rem; }
+    .lightbox-next { right: 1.5rem; }
+    .lightbox-close {
+      position: fixed; top: 1.2rem; right: 1.5rem;
+      background: rgba(255,255,255,0.15); border: none;
+      color: white; font-size: 1.2rem;
+      width: 2.6rem; height: 2.6rem; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; transition: background 0.2s; z-index: 1001;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
+    .lightbox-counter {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-size: 0.85rem;
+      font-family: 'Nunito', sans-serif; font-weight: 600; z-index: 1001;
+    }
+    .review-cta { padding: 5rem 0; background: linear-gradient(135deg, #ede6f8, #fde8f0); text-align: center; }
+    .review-cta h2 { margin-bottom: 1rem; }
+    .review-cta p { margin-bottom: 2rem; color: var(--ink-soft); }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 600px) {
+      .favorites-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .lightbox-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="review-hero">
+    <a href="index.html" class="review-hero-back">← Вернуться на главную</a>
+    <div style="padding-top: 2rem;">
+      <img src="book1.png" alt="Убийство за чашечкой чая" class="review-hero-book" />
+      <h1>Убийство за<br /><em>чашечкой чая</em></h1>
+      <p style="color: var(--ink); opacity: 0.75; margin-top: 0.5rem; font-size: 0.95rem;">Детективная раскраска для настоящих сыщиков</p>
+      <div class="review-hero-meta">
+        <span>Завершена</span>
+        <span>2 участницы</span>
+        <span>22 страницы</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="participants">
+    <div class="container">
+      <span class="section-tag" style="display:block; text-align:center;">Наши работы</span>
+      <h2>Как мы раскрасили</h2>
+
+      <!-- ЛЕНА -->
+      <div class="participant-block reveal">
+        <div class="participant-header">
+          <div class="participant-avatar">🎨</div>
+          <div class="participant-name">Лена <span>участница клуба</span></div>
+        </div>
+        <span class="gallery-label">Все страницы — 22 штуки</span>
+        <div class="gallery-grid" data-gallery="lena">
+          <div class="gallery-item" data-src="lena-01.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span></div></div>
+          <div class="gallery-item" data-src="lena-02.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span></div></div>
+          <div class="gallery-item" data-src="lena-03.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span></div></div>
+          <div class="gallery-item" data-src="lena-04.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span></div></div>
+          <div class="gallery-item" data-src="lena-05.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span></div></div>
+          <div class="gallery-item" data-src="lena-06.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span></div></div>
+          <div class="gallery-item" data-src="lena-07.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span></div></div>
+          <div class="gallery-item" data-src="lena-08.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span></div></div>
+          <div class="gallery-item" data-src="lena-09.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span></div></div>
+          <div class="gallery-item" data-src="lena-10.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span></div></div>
+          <div class="gallery-item" data-src="lena-11.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span></div></div>
+          <div class="gallery-item" data-src="lena-12.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span></div></div>
+          <div class="gallery-item" data-src="lena-13.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span></div></div>
+          <div class="gallery-item" data-src="lena-14.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span></div></div>
+          <div class="gallery-item" data-src="lena-15.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span></div></div>
+          <div class="gallery-item" data-src="lena-16.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span></div></div>
+          <div class="gallery-item" data-src="lena-17.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span></div></div>
+          <div class="gallery-item" data-src="lena-18.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span></div></div>
+          <div class="gallery-item" data-src="lena-19.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span></div></div>
+          <div class="gallery-item" data-src="lena-20.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span></div></div>
+          <div class="gallery-item" data-src="lena-21.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span></div></div>
+          <div class="gallery-item" data-src="lena-22.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span></div></div>
+        </div>
+
+        <span class="gallery-label">Любимые и нелюбимые</span>
+        <div class="favorites-grid">
+          <div class="favorites-col loved">
+            <h4>💗 Три любимые</h4>
+            <div class="fav-list">
+              <div class="fav-item" data-src="lena-fav-1.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="lena-fav-2.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="lena-fav-3.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
+            </div>
+          </div>
+          <div class="favorites-col meh">
+            <h4>💩 Три нелюбимые</h4>
+            <div class="fav-list">
+              <div class="fav-item" data-src="lena-nofav-1.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="lena-nofav-2.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="lena-nofav-3.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="participant-divider" />
+
+      <!-- ВАСИЛИНА -->
+      <div class="participant-block reveal">
+        <div class="participant-header">
+          <div class="participant-avatar" style="background: linear-gradient(135deg, #a8d8f0, #f9e4a0);">🖍️</div>
+          <div class="participant-name">Василина <span>участница клуба</span></div>
+        </div>
+        <span class="gallery-label">Все страницы — 22 штуки</span>
+        <div class="gallery-grid" data-gallery="vasilina">
+          <div class="gallery-item" data-src="vasilina-01.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span></div></div>
+          <div class="gallery-item" data-src="vasilina-02.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span></div></div>
+          <div class="gallery-item" data-src="vasilina-03.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span></div></div>
+          <div class="gallery-item" data-src="vasilina-04.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span></div></div>
+          <div class="gallery-item" data-src="vasilina-05.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span></div></div>
+          <div class="gallery-item" data-src="vasilina-06.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span></div></div>
+          <div class="gallery-item" data-src="vasilina-07.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span></div></div>
+          <div class="gallery-item" data-src="vasilina-08.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span></div></div>
+          <div class="gallery-item" data-src="vasilina-09.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span></div></div>
+          <div class="gallery-item" data-src="vasilina-10.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span></div></div>
+          <div class="gallery-item" data-src="vasilina-11.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span></div></div>
+          <div class="gallery-item" data-src="vasilina-12.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span></div></div>
+          <div class="gallery-item" data-src="vasilina-13.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span></div></div>
+          <div class="gallery-item" data-src="vasilina-14.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span></div></div>
+          <div class="gallery-item" data-src="vasilina-15.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span></div></div>
+          <div class="gallery-item" data-src="vasilina-16.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span></div></div>
+          <div class="gallery-item" data-src="vasilina-17.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span></div></div>
+          <div class="gallery-item" data-src="vasilina-18.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span></div></div>
+          <div class="gallery-item" data-src="vasilina-19.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span></div></div>
+          <div class="gallery-item" data-src="vasilina-20.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span></div></div>
+          <div class="gallery-item" data-src="vasilina-21.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span></div></div>
+          <div class="gallery-item" data-src="vasilina-22.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span></div></div>
+        </div>
+
+        <span class="gallery-label">Любимые и нелюбимые</span>
+        <div class="favorites-grid">
+          <div class="favorites-col loved">
+            <h4>💗 Три любимые</h4>
+            <div class="fav-list">
+              <div class="fav-item" data-src="vasilina-fav-1.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="vasilina-fav-2.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="vasilina-fav-3.jpg"><div class="fav-thumb">🌸</div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
+            </div>
+          </div>
+          <div class="favorites-col meh">
+            <h4>💩 Три нелюбимые</h4>
+            <div class="fav-list">
+              <div class="fav-item" data-src="vasilina-nofav-1.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="vasilina-nofav-2.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="vasilina-nofav-3.jpg"><div class="fav-thumb">🍂</div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="review-cta">
+    <div class="container">
+      <span class="section-tag">Хочешь такую же?</span>
+      <h2>Понравилась раскраска?</h2>
+      <p>Купи себе экземпляр и присоединяйся к нам в следующей книге!</p>
+      <div class="cta-buttons">
+        <a href="https://ozon.ru/t/fIJkJTm" target="_blank" rel="noopener" class="btn-outline">Купить на Ozon →</a>
+        <a href="index.html#join" class="btn-hero" style="font-size: 0.95rem; padding: 0.8em 2em;">Вступить в клуб</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-btn lightbox-prev" id="lightbox-prev">←</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <button class="lightbox-btn lightbox-next" id="lightbox-next">→</button>
+    <div class="lightbox-counter" id="lightbox-counter"></div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    let allImages = [];
+    let currentIndex = 0;
+
+    function collectImages() {
+      allImages = [];
+      document.querySelectorAll('[data-src]').forEach(el => {
+        allImages.push(el.dataset.src);
+      });
+    }
+
+    function openLightbox(src) {
+      currentIndex = allImages.indexOf(src);
+      showImage(currentIndex);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showImage(index) {
+      const img = document.getElementById('lightbox-img');
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = allImages[index];
+        img.style.opacity = '1';
+      }, 150);
+      document.getElementById('lightbox-counter').textContent =
+        (index + 1) + ' / ' + allImages.length;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    collectImages();
+
+    document.querySelectorAll('[data-src]').forEach(el => {
+      el.addEventListener('click', () => openLightbox(el.dataset.src));
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+
+    document.getElementById('lightbox-prev').addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+      showImage(currentIndex);
+    });
+
+    document.getElementById('lightbox-next').addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % allImages.length;
+      showImage(currentIndex);
+    });
+
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+        showImage(currentIndex);
+      }
+      if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % allImages.length;
+        showImage(currentIndex);
+      }
+    });
+  </script>
+</body>
+</html>
