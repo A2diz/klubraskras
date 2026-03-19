@@ -580,3 +580,44 @@ a { color: inherit; text-decoration: none; }
   .form-row     { grid-template-columns: 1fr; }
   .hero-title   { font-size: 3.5rem; }
 }
+
+/* ===== КНОПКА ЛИСТАТЬ СТРАНИЦЫ ===== */
+.btn-review {
+  display: inline-block;
+  background: linear-gradient(135deg, #9b6fd4, #7c4db8);
+  color: #fff !important;
+  padding: 0.75em 1.8em;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 4px 20px rgba(120,70,200,0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-review::before {
+  content: '🌸✨🌷💜🌸';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+  opacity: 0;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.btn-review:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 30px rgba(120,70,200,0.45);
+  color: #fff !important;
+}
+
+.btn-review:hover::before {
+  opacity: 0.35;
+}
