@@ -10,6 +10,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">Клуб <em>Раскрасок</em></a>
+    <ul class="nav-links">
+      <li><a href="#about">О нас</a></li>
+      <li><a href="#books">Раскраски</a></li>
+      <li><a href="#naming">Название</a></li>
+      <li><a href="#join">Вступить</a></li>
+    </ul>
+    <button class="nav-burger" id="nav-burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#about" class="nav-mobile-link">О нас</a>
+    <a href="#books" class="nav-mobile-link">Раскраски</a>
+    <a href="#naming" class="nav-mobile-link">Предложить название</a>
+    <a href="#join" class="nav-mobile-link">Вступить в клуб</a>
+  </div>
+
 
   <!-- HERO -->
   <section class="hero">
@@ -98,7 +120,7 @@
           </div>
           <div class="book-info">
             <h3>Убийство за чашечкой чая</h3>
-            <p>Детективная раскраска для настоящих сыщиков. Мы полностью завершили эту раскраску — детективная атмосфера и уютные бабули-сыщицы покорили наши сердца 🕵️</p>
+            <p>Детективная раскраска для настоящих сыщиков. Мы полностью завершили эту книгу — детективная атмосфера и уютные бабули-сыщицы покорили наши сердца 🕵️</p>
             <a href="review-tea.html" class="btn-review">Листать страницы</a><br/><a href="https://ozon.ru/t/fIJkJTm" target="_blank" rel="noopener" class="btn-outline">Купить на Ozon →</a>
           </div>
         </div>
@@ -117,7 +139,7 @@
               <span class="challenge-label">Текущий челлендж</span>
               <p>Первая страничка — свобода! Никаких ограничений 🌈</p>
             </div>
-            <a href="https://ozon.ru/t/7WxLxIC" target="_blank" rel="noopener" class="btn-outline">Купить на Ozon →</a>
+            <a href="review-meeting.html" class="btn-review">Листать страницы</a><br/><a href="https://ozon.ru/t/7WxLxIC" target="_blank" rel="noopener" class="btn-outline">Купить на Ozon →</a>
           </div>
         </div>
 
@@ -143,7 +165,7 @@
           </div>
           <textarea name="message" placeholder="Почему именно это название? (необязательно)" rows="3"></textarea>
           <button type="submit" class="btn-submit">Предложить название 💌</button>
-          <p class="form-note">Когда у нас определятся лидеры, мы сделаем опрос и выберем название голосованием! ✨</p>
+          <p class="form-note">Предложения получает Лена — самое лучшее войдёт в историю клуба ✨</p>
         </form>
       </div>
     </div>
@@ -193,5 +215,30 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <script>
+    // Навигация
+    const burger = document.getElementById('nav-burger');
+    const mobileMenu = document.getElementById('nav-mobile');
+    const nav = document.getElementById('nav');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Закрывать меню при клике на ссылку
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Тень при скролле
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
 </body>
 </html>
