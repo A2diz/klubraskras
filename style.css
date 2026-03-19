@@ -621,3 +621,26 @@ a { color: inherit; text-decoration: none; }
 .btn-review:hover::before {
   opacity: 0.35;
 }
+
+/* ===== ЦВЕТОЧКИ НА КНОПКЕ ===== */
+.btn-review {
+  position: relative;
+  overflow: visible !important;
+}
+
+.btn-flower {
+  position: absolute;
+  font-size: 1.1rem;
+  pointer-events: none;
+  opacity: 0;
+  animation: flowerPop 1s ease-out forwards;
+  z-index: 10;
+  transform: scale(0.5);
+}
+
+@keyframes flowerPop {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-20deg); }
+  30%  { opacity: 0.7; transform: scale(1.1) rotate(10deg); }
+  70%  { opacity: 0.5; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: scale(0.8) translateY(-12px) rotate(15deg); }
+}
