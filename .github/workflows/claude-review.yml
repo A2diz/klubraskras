@@ -1,0 +1,29 @@
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          review_type: "code_review"
+          language: "ru"
+          custom_instructions: |
+            Ты помогаешь с сайтом клуба раскрасок. 
+            Проверь изменения на качество HTML/CSS/JS, доступность и производительность.
+            Отвечай по-русски, будь дружелюбным и поддерживающим тоном.
