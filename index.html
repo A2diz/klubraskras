@@ -193,33 +193,5 @@
   </footer>
 
   <script src="main.js"></script>
-  <script>
-    // Цветочки на кнопке
-    const flowers = ["🌸","🌷","💜","✨","🌺","💗","🌼"];
-    const btn = document.querySelector(".btn-review");
-    let flowerInterval = null;
-
-    function spawnFlower() {
-      const el = document.createElement("span");
-      el.className = "btn-flower";
-      el.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-      const rect = btn.getBoundingClientRect();
-      const x = Math.random() * (rect.width + 30) - 15;
-      const y = Math.random() * (rect.height + 20) - 10;
-      el.style.left = x + "px";
-      el.style.top = y + "px";
-      btn.appendChild(el);
-      setTimeout(() => el.remove(), 1000);
-    }
-
-    btn.addEventListener("mouseenter", () => {
-      spawnFlower();
-      flowerInterval = setInterval(spawnFlower, 350);
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      clearInterval(flowerInterval);
-    });
-  </script>
 </body>
 </html>
