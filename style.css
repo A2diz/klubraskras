@@ -598,19 +598,6 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
-.btn-review::before {
-  content: '🌸✨🌷💜🌸';
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 1rem;
-  opacity: 0;
-  letter-spacing: 0.1em;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
 
 .btn-review:hover {
   transform: scale(1.08);
@@ -618,29 +605,4 @@ a { color: inherit; text-decoration: none; }
   color: #fff !important;
 }
 
-.btn-review:hover::before {
-  opacity: 0.35;
-}
 
-/* ===== ЦВЕТОЧКИ НА КНОПКЕ ===== */
-.btn-review {
-  position: relative;
-  overflow: visible !important;
-}
-
-.btn-flower {
-  position: absolute;
-  font-size: 1.1rem;
-  pointer-events: none;
-  opacity: 0;
-  animation: flowerPop 1s ease-out forwards;
-  z-index: 10;
-  transform: scale(0.5);
-}
-
-@keyframes flowerPop {
-  0%   { opacity: 0; transform: scale(0.3) rotate(-20deg); }
-  30%  { opacity: 0.7; transform: scale(1.1) rotate(10deg); }
-  70%  { opacity: 0.5; transform: scale(1) rotate(0deg); }
-  100% { opacity: 0; transform: scale(0.8) translateY(-12px) rotate(15deg); }
-}
