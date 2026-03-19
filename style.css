@@ -342,6 +342,18 @@ a { color: inherit; text-decoration: none; }
 
 .book-info {
   padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info .btn-review,
+.book-info .btn-outline {
+  margin-top: auto;
+}
+
+.book-info .btn-review {
+  margin-top: auto;
+  margin-bottom: 0.6rem;
 }
 
 .book-info h3 {
