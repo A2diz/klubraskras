@@ -1,0 +1,38 @@
+name: Тесты сайта
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Можно запустить вручную
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v4
+
+      - name: Установить Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Установить Playwright
+        run: |
+          npm init -y
+          npm install @playwright/test
+          npx playwright install chromium --with-deps
+
+      - name: Запустить тесты
+        run: npx playwright test
+
+      - name: Сохранить скриншоты если тесты упали
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: test-results/
+          retention-days: 7
