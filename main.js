@@ -18,20 +18,6 @@ document.querySelectorAll(
   observer.observe(el);
 });
 
-// Add CSS for reveal animation dynamically
-const style = document.createElement('style');
-style.textContent = `
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-document.head.appendChild(style);
 
 // Formspree success message
 const form = document.querySelector('.name-form');
