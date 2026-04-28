@@ -191,7 +191,7 @@
       object-fit: cover;
       display: block;
       transition: transform 0.3s;
-      filter: contrast(1.1);
+      filter: contrast(1.2);
     }
 
     .gallery-item:hover img {
@@ -217,13 +217,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: contrast(1.1);
+      filter: contrast(1.2);
     }
 
     @media (max-width: 600px) {
       .favorites-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(3, 1fr); }
-      .lightbox-btn { display: none; }
+      .lightbox-btn { width: 2.4rem; height: 2.4rem; font-size: 1.1rem; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
     }
   </style>
 </head>
@@ -389,17 +391,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg" onclick="openLightbox(\'images/lena/lena-fav-1.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg" onclick="openLightbox(\'images/lena/lena-fav-2.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg" onclick="openLightbox(\'images/lena/lena-fav-3.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong></div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg" onclick="openLightbox(\'images/lena/lena-nofav-1.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg" onclick="openLightbox(\'images/lena/lena-nofav-2.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg" onclick="openLightbox(\'images/lena/lena-nofav-3.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong></div></div>
             </div>
           </div>
         </div>
@@ -548,17 +550,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg" onclick="openLightbox(\'images/vasilina/vasilina-fav-1.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg" onclick="openLightbox(\'images/vasilina/vasilina-fav-2.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg" onclick="openLightbox(\'images/vasilina/vasilina-fav-3.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg" onclick="openLightbox(\'images/vasilina/vasilina-nofav-1.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg" onclick="openLightbox(\'images/vasilina/vasilina-nofav-2.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg" onclick="openLightbox(\'images/vasilina/vasilina-nofav-3.jpg\')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
             </div>
           </div>
         </div>
