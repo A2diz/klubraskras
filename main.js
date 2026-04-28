@@ -51,15 +51,16 @@ if (form) {
     }
   });
 // Загрузка изображений из data-src
-document.querySelectorAll('.gallery-item').forEach(item => {
-  const src = item.getAttribute('data-src');
-  if (!src) return;
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    const src = item.getAttribute('data-src');
+    if (!src) return;
 
-  const img = document.createElement('img');
-  img.src = src;
-  img.alt = '';
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
 
-  item.innerHTML = ''; // убираем заглушку
-  item.appendChild(img);
-});
+    item.innerHTML = '';
+    item.appendChild(img);
+  });
 }
