@@ -592,13 +592,9 @@
 
   <script src="main.js"></script>
   <script>
-    // Два массива: основная галерея и fav/nofav
-    const galleryImages = [...document.querySelectorAll('.gallery-grid .gallery-item[data-src]')]
-      .map(el => el.dataset.src);
-    const favImages = [...document.querySelectorAll('.fav-item[data-src]')]
-      .map(el => el.dataset.src);
-
-    let allImages = [];
+    // Собираем все src из gallery-item (только основные, не fav)
+    const galleryItems = [...document.querySelectorAll('.gallery-grid .gallery-item[data-src]')];
+    let allImages = galleryItems.map(el => el.dataset.src);
     let currentIndex = 0;
 
     // Предзагрузка соседних картинок
@@ -611,18 +607,17 @@
     }
 
     function openLightbox(src) {
-      // Определяем в каком массиве картинка
-      const inGallery = galleryImages.indexOf(src);
-      const inFav = favImages.indexOf(src);
-
-      if (inFav !== -1) {
-        allImages = favImages;
-        currentIndex = inFav;
-      } else {
-        allImages = galleryImages;
-        currentIndex = inGallery !== -1 ? inGallery : 0;
+      currentIndex = allImages.indexOf(src);
+      if (currentIndex === -1) {
+        // Если это fav картинка — просто показываем без листания
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        lbImg.src = src;
+        document.getElementById('lightbox-counter').textContent = '';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        return;
       }
-
       showImage(currentIndex);
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
