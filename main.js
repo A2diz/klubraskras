@@ -50,17 +50,4 @@ if (form) {
       btn.disabled = false;
     }
   });
-// Загрузка изображений из data-src
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    const src = item.getAttribute('data-src');
-    if (!src) return;
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = '';
-
-    item.innerHTML = '';
-    item.appendChild(img);
-  });
 }
