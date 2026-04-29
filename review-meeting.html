@@ -126,6 +126,53 @@
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 0.9rem; margin-bottom: 2.5rem;
     }
+    .gallery-page {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.9rem;
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+    .gallery-page.active {
+      display: grid;
+    }
+    @media (max-width: 600px) {
+      .gallery-page {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.2rem 0 2rem;
+      grid-column: 1 / -1;
+      flex-wrap: wrap;
+    }
+    .page-btn {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--lilac);
+      background: var(--mist);
+      color: var(--ink-soft);
+      font-family: "Nunito", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .page-btn:hover:not(:disabled) { background: var(--lilac); color: var(--ink); }
+    .page-btn.active { background: linear-gradient(135deg, #9b6fd4, #7c4db8); color: #fff; border-color: transparent; }
+    .page-btn:disabled { opacity: 0.3; cursor: default; }
+    @media (max-width: 600px) {
+      .page-btn { width: 1.9rem; height: 1.9rem; font-size: 0.78rem; }
+    }
     .gallery-item {
       position: relative; border-radius: 14px; overflow: hidden;
       aspect-ratio: 3/4;
@@ -178,8 +225,45 @@
     }
     .fav-thumb img { width: 100%; height: 100%; object-fit: cover; }
     .fav-item-info strong { display: block; color: var(--ink); font-size: 0.85rem; }
+    .fav-item-info span { display: block; font-size: 0.73rem; color: var(--ink-soft); margin-top: 0.2rem; }
 
-    .participant-divider { border: none; border-top: 2px dashed var(--lilac); margin: 4rem 0; opacity: 0.6; }
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9b6fd4, #7c4db8);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 25px rgba(140,100,180,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px rgba(140,100,180,0.4);
+    }
+
+    @media (max-width: 600px) {
+      .back-to-top { width: 2.8rem; height: 2.8rem; font-size: 1.3rem; bottom: 1.5rem; right: 1.5rem; }
+    }
 
     /* LIGHTBOX */
     .lightbox {
@@ -388,6 +472,9 @@
     </div>
   </section>
 
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" class="back-to-top" title="Вернуться вверх">↑</button>
+
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close">✕</button>
@@ -401,6 +488,93 @@
   <script>
     let allImages = [];
     let currentIndex = 0;
+    const pageState = {};
+
+    function rebuildGalleryPages(prefix, itemsPerPage) {
+      document.querySelectorAll('.gallery-grid[data-gallery="' + prefix + '"]').forEach(function(grid) {
+        const items = Array.from(grid.querySelectorAll('.gallery-item'));
+        if (!items.length) return;
+
+        grid.querySelectorAll('.gallery-page, .pagination').forEach(function(el) {
+          el.remove();
+        });
+
+        const pages = [];
+        for (let i = 0; i < items.length; i += itemsPerPage) {
+          const page = document.createElement('div');
+          page.className = 'gallery-page';
+          page.dataset.page = pages.length;
+          page.dataset.gallery = prefix;
+          if (pages.length === 0) page.classList.add('active');
+          items.slice(i, i + itemsPerPage).forEach(function(item) {
+            page.appendChild(item);
+          });
+          grid.appendChild(page);
+          pages.push(page);
+        }
+
+        const pagination = document.createElement('div');
+        pagination.className = 'pagination';
+        pagination.id = 'pag-' + prefix;
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.id = 'prev-' + prefix;
+        prevBtn.className = 'page-btn';
+        prevBtn.disabled = true;
+        prevBtn.textContent = '←';
+        prevBtn.addEventListener('click', function() { changePage(prefix, -1); });
+        pagination.appendChild(prevBtn);
+
+        pages.forEach(function(_, index) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.id = 'pbtn-' + prefix + '-' + index;
+          btn.className = 'page-btn' + (index === 0 ? ' active' : '');
+          btn.textContent = index + 1;
+          btn.addEventListener('click', function() { goPage(prefix, index); });
+          pagination.appendChild(btn);
+        });
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.id = 'next-' + prefix;
+        nextBtn.className = 'page-btn';
+        nextBtn.textContent = '→';
+        nextBtn.disabled = pages.length <= 1;
+        nextBtn.addEventListener('click', function() { changePage(prefix, 1); });
+        pagination.appendChild(nextBtn);
+
+        grid.appendChild(pagination);
+      });
+    }
+
+    function goPage(prefix, pageNum) {
+      const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      if (!pages.length) return;
+      pages.forEach(function(p) { p.classList.remove('active'); });
+      pages[pageNum].classList.add('active');
+      const pag = document.getElementById('pag-' + prefix);
+      if (pag) {
+        pag.querySelectorAll('.page-btn:not([id^="prev"]):not([id^="next"])').forEach(function(btn, i) {
+          btn.classList.toggle('active', i === pageNum);
+        });
+        const prev = document.getElementById('prev-' + prefix);
+        const next = document.getElementById('next-' + prefix);
+        if (prev) prev.disabled = pageNum === 0;
+        if (next) next.disabled = pageNum >= pages.length - 1;
+      }
+    }
+
+    function changePage(prefix, dir) {
+      const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      const current = Array.from(pages).findIndex(function(page) { return page.classList.contains('active'); });
+      const nextPage = current + dir;
+      if (nextPage >= 0 && nextPage < pages.length) goPage(prefix, nextPage);
+    }
+
+    rebuildGalleryPages('lena', 6);
+    rebuildGalleryPages('vasilina', 6);
 
     function collectImages() {
       allImages = [];
@@ -451,6 +625,21 @@
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + allImages.length) % allImages.length; showImage(currentIndex); }
       if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % allImages.length; showImage(currentIndex); }
+    });
+
+    // ===== BACK TO TOP =====
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>

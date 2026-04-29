@@ -137,6 +137,7 @@
     }
     .fav-thumb img { width: 100%; height: 100%; object-fit: cover; }
     .fav-item-info strong { display: block; color: var(--ink); font-size: 0.85rem; }
+    .fav-item-info span { display: block; font-size: 0.73rem; color: var(--ink-soft); margin-top: 0.2rem; }
     .participant-divider { border: none; border-top: 2px dashed var(--lilac); margin: 4rem 0; opacity: 0.6; }
 
     /* LIGHTBOX */
@@ -233,8 +234,18 @@
       display: none;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 0.9rem;
+      width: 100%;
+      grid-column: 1 / -1;
     }
-    .gallery-page.active { display: grid; }
+    .gallery-page.active {
+      display: grid;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-page {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     .pagination {
       display: flex;
@@ -242,6 +253,7 @@
       justify-content: center;
       gap: 0.5rem;
       margin: 1.2rem 0 2rem;
+      grid-column: 1 / -1;
       flex-wrap: wrap;
     }
 
@@ -268,6 +280,43 @@
 
     @media (max-width: 600px) {
       .page-btn { width: 1.9rem; height: 1.9rem; font-size: 0.78rem; }
+    }
+
+    /* ===== BACK TO TOP ===== */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9b6fd4, #7c4db8);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 25px rgba(140,100,180,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px rgba(140,100,180,0.4);
+    }
+    @media (max-width: 600px) {
+      .back-to-top { width: 2.8rem; height: 2.8rem; font-size: 1.3rem; bottom: 1.5rem; right: 1.5rem; }
     }
   </style>
 </head>
@@ -442,11 +491,8 @@
             <button class="page-btn" id="pbtn-lena-1" onclick="goPage('lena', 1)">2</button>
             <button class="page-btn" id="pbtn-lena-2" onclick="goPage('lena', 2)">3</button>
             <button class="page-btn" id="pbtn-lena-3" onclick="goPage('lena', 3)">4</button>
-            <button class="page-btn" id="pbtn-lena-4" onclick="goPage('lena', 4)">5</button>
             <button class="page-btn" id="next-lena" onclick="changePage('lena', 1)">→</button>
           </div>
-        </div>
-
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые</span>
@@ -454,17 +500,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg" onclick="openLightbox('images/lena/lena-fav-1.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg" onclick="openLightbox('images/lena/lena-fav-2.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg" onclick="openLightbox('images/lena/lena-fav-3.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg" onclick="openLightbox('images/lena/lena-fav-1.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="Любимая работа 1" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Лена любит 🎨</strong><span></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg" onclick="openLightbox('images/lena/lena-fav-2.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="Любимая работа 2" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Лена любит 🎨</strong><span></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg" onclick="openLightbox('images/lena/lena-fav-3.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="Любимая работа 3" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Лена любит 🎨</strong><span></div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg" onclick="openLightbox('images/lena/lena-nofav-1.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg" onclick="openLightbox('images/lena/lena-nofav-2.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg" onclick="openLightbox('images/lena/lena-nofav-3.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg" onclick="openLightbox('images/lena/lena-nofav-1.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="Нелюбимая работа 1" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg" onclick="openLightbox('images/lena/lena-nofav-2.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="Нелюбимая работа 2" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg" onclick="openLightbox('images/lena/lena-nofav-3.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="Нелюбимая работа 3" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
             </div>
           </div>
         </div>
@@ -622,11 +668,8 @@
             <button class="page-btn" id="pbtn-vasilina-1" onclick="goPage('vasilina', 1)">2</button>
             <button class="page-btn" id="pbtn-vasilina-2" onclick="goPage('vasilina', 2)">3</button>
             <button class="page-btn" id="pbtn-vasilina-3" onclick="goPage('vasilina', 3)">4</button>
-            <button class="page-btn" id="pbtn-vasilina-4" onclick="goPage('vasilina', 4)">5</button>
             <button class="page-btn" id="next-vasilina" onclick="changePage('vasilina', 1)">→</button>
           </div>
-        </div>
-
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые</span>
@@ -634,17 +677,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-1.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-2.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-3.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-1.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="Любимая работа 1" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Василина любит 🎨</strong><span></div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-2.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="Любимая работа 2" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Василина любит 🎨</strong><span></div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-3.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="Любимая работа 3" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Василина любит 🎨</strong><span></div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-1.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-2.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-3.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-1.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="Нелюбимая работа 1" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-2.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="Нелюбимая работа 2" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-3.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="Нелюбимая работа 3" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Не нравится 😒</strong><span></div></div>
             </div>
           </div>
         </div>
@@ -665,6 +708,9 @@
     </div>
   </section>
 
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" class="back-to-top" title="Вернуться вверх">↑</button>
+
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close">✕</button>
@@ -678,6 +724,69 @@
   <script>
     // Состояние пагинации
     const pageState = {};
+
+    function rebuildGalleryPages(prefix, itemsPerPage) {
+      document.querySelectorAll('.gallery-grid[data-gallery="' + prefix + '"]').forEach(function(grid) {
+        const items = Array.from(grid.querySelectorAll('.gallery-item'));
+        if (!items.length) return;
+
+        grid.querySelectorAll('.gallery-page, .pagination').forEach(function(el) {
+          el.remove();
+        });
+
+        const pages = [];
+        for (let i = 0; i < items.length; i += itemsPerPage) {
+          const page = document.createElement('div');
+          page.className = 'gallery-page';
+          page.dataset.page = pages.length;
+          page.dataset.gallery = prefix;
+          if (pages.length === 0) page.classList.add('active');
+          items.slice(i, i + itemsPerPage).forEach(function(item) {
+            page.appendChild(item);
+          });
+          grid.appendChild(page);
+          pages.push(page);
+        }
+
+        const pagination = document.createElement('div');
+        pagination.className = 'pagination';
+        pagination.id = 'pag-' + prefix;
+
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.id = 'prev-' + prefix;
+        prevBtn.className = 'page-btn';
+        prevBtn.disabled = true;
+        prevBtn.textContent = '←';
+        prevBtn.addEventListener('click', function() { changePage(prefix, -1); });
+        pagination.appendChild(prevBtn);
+
+        pages.forEach(function(_, index) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.id = 'pbtn-' + prefix + '-' + index;
+          btn.className = 'page-btn' + (index === 0 ? ' active' : '');
+          btn.textContent = index + 1;
+          btn.addEventListener('click', function() { goPage(prefix, index); });
+          pagination.appendChild(btn);
+        });
+
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.id = 'next-' + prefix;
+        nextBtn.className = 'page-btn';
+        nextBtn.textContent = '→';
+        nextBtn.disabled = pages.length <= 1;
+        nextBtn.addEventListener('click', function() { changePage(prefix, 1); });
+        pagination.appendChild(nextBtn);
+
+        grid.appendChild(pagination);
+        pageState[prefix] = 0;
+      });
+    }
+
+    rebuildGalleryPages('lena', 6);
+    rebuildGalleryPages('vasilina', 6);
 
     function goPage(prefix, pageNum) {
       const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
@@ -696,6 +805,7 @@
         if (prev) prev.disabled = pageNum === 0;
         if (next) next.disabled = pageNum >= pages.length - 1;
       }
+      preloadAdjacentPages(prefix, pageNum);
     }
 
     function changePage(prefix, dir) {
@@ -799,6 +909,52 @@
       if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; showLightboxImage(lightboxIndex); }
       if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; showLightboxImage(lightboxIndex); }
     });
+
+    // ===== BACK TO TOP =====
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ===== ОПТИМИЗАЦИЯ ЗАГРУЗКИ: ПРЕДЗАГРУЗКА СОСЕДНИХ СТРАНИЦ =====
+    function preloadAdjacentPages(prefix, currentPage) {
+      const allPages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      const numPages = allPages.length;
+      
+      // Загрузи изображения соседней страницы заранее
+      [-1, 1].forEach(function(offset) {
+        const pageIdx = (currentPage + offset + numPages) % numPages;
+        if (pageIdx >= 0 && pageIdx < numPages) {
+          const page = allPages[pageIdx];
+          page.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
+            if (!img.src.startsWith('data:')) {
+              img.src = img.src; // Запусти загрузку
+            }
+          });
+        }
+      });
+    }
+
+    // Подключи предзагрузку к changePage
+    const originalChangePage = window.changePage;
+    window.changePage = function(prefix, dir) {
+      const cur = pageState[prefix] || 0;
+      const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      const newPage = cur + dir;
+      if (newPage >= 0 && newPage < pages.length) {
+        goPage(prefix, newPage);
+        preloadAdjacentPages(prefix, newPage);
+      }
+    };
   </script>
 </body>
 </html>
