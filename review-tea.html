@@ -227,6 +227,48 @@
       .lightbox-prev { left: 0.5rem; }
       .lightbox-next { right: 0.5rem; }
     }
+
+    /* ===== ПАГИНАЦИЯ ===== */
+    .gallery-page {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.9rem;
+    }
+    .gallery-page.active { display: grid; }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 1.2rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .page-btn {
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--lilac);
+      background: var(--mist);
+      color: var(--ink-soft);
+      font-family: "Nunito", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .page-btn:hover:not(:disabled) { background: var(--lilac); color: var(--ink); }
+    .page-btn.active { background: linear-gradient(135deg, #9b6fd4, #7c4db8); color: #fff; border-color: transparent; }
+    .page-btn:disabled { opacity: 0.3; cursor: default; }
+
+    @media (max-width: 600px) {
+      .page-btn { width: 1.9rem; height: 1.9rem; font-size: 0.78rem; }
+    }
   </style>
 </head>
 <body>
@@ -258,132 +300,153 @@
         </div>
         <span class="gallery-label">Все страницы — 21</span>
         <div class="gallery-grid" data-gallery="lena">
-          <div class="gallery-item" data-src="images/lena/lena-01.jpg" onclick="openLightbox('images/lena/lena-01.jpg')">
+          <div class="gallery-page active" data-page="0" data-gallery="lena">
+            <div class="gallery-item" data-src="images/lena/lena-01.jpg" onclick="openLightbox('images/lena/lena-01.jpg', 'lena-gallery')">
             <img src="images/lena/lena-01.jpg" alt="Страница 01" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-02.jpg" onclick="openLightbox('images/lena/lena-02.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-02.jpg" onclick="openLightbox('images/lena/lena-02.jpg', 'lena-gallery')">
             <img src="images/lena/lena-02.jpg" alt="Страница 02" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-03.jpg" onclick="openLightbox('images/lena/lena-03.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-03.jpg" onclick="openLightbox('images/lena/lena-03.jpg', 'lena-gallery')">
             <img src="images/lena/lena-03.jpg" alt="Страница 03" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-04.jpg" onclick="openLightbox('images/lena/lena-04.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-04.jpg" onclick="openLightbox('images/lena/lena-04.jpg', 'lena-gallery')">
             <img src="images/lena/lena-04.jpg" alt="Страница 04" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-05.jpg" onclick="openLightbox('images/lena/lena-05.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-05.jpg" onclick="openLightbox('images/lena/lena-05.jpg', 'lena-gallery')">
             <img src="images/lena/lena-05.jpg" alt="Страница 05" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-06.jpg" onclick="openLightbox('images/lena/lena-06.jpg')">
+          </div>
+          <div class="gallery-page" data-page="1" data-gallery="lena">
+            <div class="gallery-item" data-src="images/lena/lena-06.jpg" onclick="openLightbox('images/lena/lena-06.jpg', 'lena-gallery')">
             <img src="images/lena/lena-06.jpg" alt="Страница 06" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-07.jpg" onclick="openLightbox('images/lena/lena-07.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-07.jpg" onclick="openLightbox('images/lena/lena-07.jpg', 'lena-gallery')">
             <img src="images/lena/lena-07.jpg" alt="Страница 07" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-08.jpg" onclick="openLightbox('images/lena/lena-08.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-08.jpg" onclick="openLightbox('images/lena/lena-08.jpg', 'lena-gallery')">
             <img src="images/lena/lena-08.jpg" alt="Страница 08" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-09.jpg" onclick="openLightbox('images/lena/lena-09.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-09.jpg" onclick="openLightbox('images/lena/lena-09.jpg', 'lena-gallery')">
             <img src="images/lena/lena-09.jpg" alt="Страница 09" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-10.jpg" onclick="openLightbox('images/lena/lena-10.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-10.jpg" onclick="openLightbox('images/lena/lena-10.jpg', 'lena-gallery')">
             <img src="images/lena/lena-10.jpg" alt="Страница 10" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-11.jpg" onclick="openLightbox('images/lena/lena-11.jpg')">
+          </div>
+          <div class="gallery-page" data-page="2" data-gallery="lena">
+            <div class="gallery-item" data-src="images/lena/lena-11.jpg" onclick="openLightbox('images/lena/lena-11.jpg', 'lena-gallery')">
             <img src="images/lena/lena-11.jpg" alt="Страница 11" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-12.jpg" onclick="openLightbox('images/lena/lena-12.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-12.jpg" onclick="openLightbox('images/lena/lena-12.jpg', 'lena-gallery')">
             <img src="images/lena/lena-12.jpg" alt="Страница 12" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-13.jpg" onclick="openLightbox('images/lena/lena-13.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-13.jpg" onclick="openLightbox('images/lena/lena-13.jpg', 'lena-gallery')">
             <img src="images/lena/lena-13.jpg" alt="Страница 13" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-14.jpg" onclick="openLightbox('images/lena/lena-14.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-14.jpg" onclick="openLightbox('images/lena/lena-14.jpg', 'lena-gallery')">
             <img src="images/lena/lena-14.jpg" alt="Страница 14" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-15.jpg" onclick="openLightbox('images/lena/lena-15.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-15.jpg" onclick="openLightbox('images/lena/lena-15.jpg', 'lena-gallery')">
             <img src="images/lena/lena-15.jpg" alt="Страница 15" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-16.jpg" onclick="openLightbox('images/lena/lena-16.jpg')">
+          </div>
+          <div class="gallery-page" data-page="3" data-gallery="lena">
+            <div class="gallery-item" data-src="images/lena/lena-16.jpg" onclick="openLightbox('images/lena/lena-16.jpg', 'lena-gallery')">
             <img src="images/lena/lena-16.jpg" alt="Страница 16" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-17.jpg" onclick="openLightbox('images/lena/lena-17.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-17.jpg" onclick="openLightbox('images/lena/lena-17.jpg', 'lena-gallery')">
             <img src="images/lena/lena-17.jpg" alt="Страница 17" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-18.jpg" onclick="openLightbox('images/lena/lena-18.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-18.jpg" onclick="openLightbox('images/lena/lena-18.jpg', 'lena-gallery')">
             <img src="images/lena/lena-18.jpg" alt="Страница 18" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-19.jpg" onclick="openLightbox('images/lena/lena-19.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-19.jpg" onclick="openLightbox('images/lena/lena-19.jpg', 'lena-gallery')">
             <img src="images/lena/lena-19.jpg" alt="Страница 19" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-20.jpg" onclick="openLightbox('images/lena/lena-20.jpg')">
+            <div class="gallery-item" data-src="images/lena/lena-20.jpg" onclick="openLightbox('images/lena/lena-20.jpg', 'lena-gallery')">
             <img src="images/lena/lena-20.jpg" alt="Страница 20" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span></div>
           </div>
-          <div class="gallery-item" data-src="images/lena/lena-21.jpg" onclick="openLightbox('images/lena/lena-21.jpg')">
+          </div>
+          <div class="gallery-page" data-page="4" data-gallery="lena">
+            <div class="gallery-item" data-src="images/lena/lena-21.jpg" onclick="openLightbox('images/lena/lena-21.jpg', 'lena-gallery')">
             <img src="images/lena/lena-21.jpg" alt="Страница 21" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span></div>
           </div>
+          </div>
+          <div class="pagination" id="pag-lena">
+            <button class="page-btn" id="prev-lena" onclick="changePage('lena', -1)" disabled>←</button>
+            <button class="page-btn active" id="pbtn-lena-0" onclick="goPage('lena', 0)">1</button>
+            <button class="page-btn" id="pbtn-lena-1" onclick="goPage('lena', 1)">2</button>
+            <button class="page-btn" id="pbtn-lena-2" onclick="goPage('lena', 2)">3</button>
+            <button class="page-btn" id="pbtn-lena-3" onclick="goPage('lena', 3)">4</button>
+            <button class="page-btn" id="pbtn-lena-4" onclick="goPage('lena', 4)">5</button>
+            <button class="page-btn" id="next-lena" onclick="changePage('lena', 1)">→</button>
+          </div>
+        </div>
+
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые</span>
@@ -391,17 +454,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg" onclick="openLightbox('images/lena/lena-fav-1.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg" onclick="openLightbox('images/lena/lena-fav-2.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg" onclick="openLightbox('images/lena/lena-fav-3.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-1.jpg" onclick="openLightbox('images/lena/lena-fav-1.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-2.jpg" onclick="openLightbox('images/lena/lena-fav-2.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-fav-3.jpg" onclick="openLightbox('images/lena/lena-fav-3.jpg', 'lena-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong></div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg" onclick="openLightbox('images/lena/lena-nofav-1.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg" onclick="openLightbox('images/lena/lena-nofav-2.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong></div></div>
-              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg" onclick="openLightbox('images/lena/lena-nofav-3.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-1.jpg" onclick="openLightbox('images/lena/lena-nofav-1.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-2.jpg" onclick="openLightbox('images/lena/lena-nofav-2.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong></div></div>
+              <div class="fav-item" data-src="images/lena/lena-nofav-3.jpg" onclick="openLightbox('images/lena/lena-nofav-3.jpg', 'lena-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/lena/lena-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong></div></div>
             </div>
           </div>
         </div>
@@ -417,132 +480,153 @@
         </div>
         <span class="gallery-label">Все страницы — 21</span>
         <div class="gallery-grid" data-gallery="vasilina">
-          <div class="gallery-item" data-src="images/vasilina/vasilina-01.jpg" onclick="openLightbox('images/vasilina/vasilina-01.jpg')">
+          <div class="gallery-page active" data-page="0" data-gallery="vasilina">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-01.jpg" onclick="openLightbox('images/vasilina/vasilina-01.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-01.jpg" alt="Страница 01" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-02.jpg" onclick="openLightbox('images/vasilina/vasilina-02.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-02.jpg" onclick="openLightbox('images/vasilina/vasilina-02.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-02.jpg" alt="Страница 02" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-03.jpg" onclick="openLightbox('images/vasilina/vasilina-03.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-03.jpg" onclick="openLightbox('images/vasilina/vasilina-03.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-03.jpg" alt="Страница 03" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-04.jpg" onclick="openLightbox('images/vasilina/vasilina-04.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-04.jpg" onclick="openLightbox('images/vasilina/vasilina-04.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-04.jpg" alt="Страница 04" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-05.jpg" onclick="openLightbox('images/vasilina/vasilina-05.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-05.jpg" onclick="openLightbox('images/vasilina/vasilina-05.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-05.jpg" alt="Страница 05" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-06.jpg" onclick="openLightbox('images/vasilina/vasilina-06.jpg')">
+          </div>
+          <div class="gallery-page" data-page="1" data-gallery="vasilina">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-06.jpg" onclick="openLightbox('images/vasilina/vasilina-06.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-06.jpg" alt="Страница 06" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-07.jpg" onclick="openLightbox('images/vasilina/vasilina-07.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-07.jpg" onclick="openLightbox('images/vasilina/vasilina-07.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-07.jpg" alt="Страница 07" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-08.jpg" onclick="openLightbox('images/vasilina/vasilina-08.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-08.jpg" onclick="openLightbox('images/vasilina/vasilina-08.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-08.jpg" alt="Страница 08" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-09.jpg" onclick="openLightbox('images/vasilina/vasilina-09.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-09.jpg" onclick="openLightbox('images/vasilina/vasilina-09.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-09.jpg" alt="Страница 09" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-10.jpg" onclick="openLightbox('images/vasilina/vasilina-10.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-10.jpg" onclick="openLightbox('images/vasilina/vasilina-10.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-10.jpg" alt="Страница 10" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-11.jpg" onclick="openLightbox('images/vasilina/vasilina-11.jpg')">
+          </div>
+          <div class="gallery-page" data-page="2" data-gallery="vasilina">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-11.jpg" onclick="openLightbox('images/vasilina/vasilina-11.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-11.jpg" alt="Страница 11" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-12.jpg" onclick="openLightbox('images/vasilina/vasilina-12.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-12.jpg" onclick="openLightbox('images/vasilina/vasilina-12.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-12.jpg" alt="Страница 12" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-13.jpg" onclick="openLightbox('images/vasilina/vasilina-13.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-13.jpg" onclick="openLightbox('images/vasilina/vasilina-13.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-13.jpg" alt="Страница 13" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-14.jpg" onclick="openLightbox('images/vasilina/vasilina-14.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-14.jpg" onclick="openLightbox('images/vasilina/vasilina-14.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-14.jpg" alt="Страница 14" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-15.jpg" onclick="openLightbox('images/vasilina/vasilina-15.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-15.jpg" onclick="openLightbox('images/vasilina/vasilina-15.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-15.jpg" alt="Страница 15" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-16.jpg" onclick="openLightbox('images/vasilina/vasilina-16.jpg')">
+          </div>
+          <div class="gallery-page" data-page="3" data-gallery="vasilina">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-16.jpg" onclick="openLightbox('images/vasilina/vasilina-16.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-16.jpg" alt="Страница 16" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-17.jpg" onclick="openLightbox('images/vasilina/vasilina-17.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-17.jpg" onclick="openLightbox('images/vasilina/vasilina-17.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-17.jpg" alt="Страница 17" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-18.jpg" onclick="openLightbox('images/vasilina/vasilina-18.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-18.jpg" onclick="openLightbox('images/vasilina/vasilina-18.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-18.jpg" alt="Страница 18" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-19.jpg" onclick="openLightbox('images/vasilina/vasilina-19.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-19.jpg" onclick="openLightbox('images/vasilina/vasilina-19.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-19.jpg" alt="Страница 19" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-20.jpg" onclick="openLightbox('images/vasilina/vasilina-20.jpg')">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-20.jpg" onclick="openLightbox('images/vasilina/vasilina-20.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-20.jpg" alt="Страница 20" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span></div>
           </div>
-          <div class="gallery-item" data-src="images/vasilina/vasilina-21.jpg" onclick="openLightbox('images/vasilina/vasilina-21.jpg')">
+          </div>
+          <div class="gallery-page" data-page="4" data-gallery="vasilina">
+            <div class="gallery-item" data-src="images/vasilina/vasilina-21.jpg" onclick="openLightbox('images/vasilina/vasilina-21.jpg', 'vasilina-gallery')">
             <img src="images/vasilina/vasilina-21.jpg" alt="Страница 21" loading="lazy" 
                  onload="this.parentElement.classList.add('loaded')"
                  onerror="this.style.display='none'">
             <div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span></div>
           </div>
+          </div>
+          <div class="pagination" id="pag-vasilina">
+            <button class="page-btn" id="prev-vasilina" onclick="changePage('vasilina', -1)" disabled>←</button>
+            <button class="page-btn active" id="pbtn-vasilina-0" onclick="goPage('vasilina', 0)">1</button>
+            <button class="page-btn" id="pbtn-vasilina-1" onclick="goPage('vasilina', 1)">2</button>
+            <button class="page-btn" id="pbtn-vasilina-2" onclick="goPage('vasilina', 2)">3</button>
+            <button class="page-btn" id="pbtn-vasilina-3" onclick="goPage('vasilina', 3)">4</button>
+            <button class="page-btn" id="pbtn-vasilina-4" onclick="goPage('vasilina', 4)">5</button>
+            <button class="page-btn" id="next-vasilina" onclick="changePage('vasilina', 1)">→</button>
+          </div>
+        </div>
+
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые</span>
@@ -550,17 +634,17 @@
           <div class="favorites-col loved">
             <h4>💗 Три любимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-1.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-2.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-3.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-1.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-2.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-fav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-fav-3.jpg', 'vasilina-fav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-fav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Любимая страница 3</strong>скоро добавим фото</div></div>
             </div>
           </div>
           <div class="favorites-col meh">
             <h4>💩 Три нелюбимые</h4>
             <div class="fav-list">
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-1.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-2.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
-              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-3.jpg')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-1.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-1.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-1.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 1</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-2.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-2.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-2.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 2</strong>скоро добавим фото</div></div>
+              <div class="fav-item" data-src="images/vasilina/vasilina-nofav-3.jpg" onclick="openLightbox('images/vasilina/vasilina-nofav-3.jpg', 'vasilina-nofav')" style="cursor:pointer"><div class="fav-thumb"><img src="images/vasilina/vasilina-nofav-3.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></div><div class="fav-item-info"><strong>Нелюбимая страница 3</strong>скоро добавим фото</div></div>
             </div>
           </div>
         </div>
@@ -592,48 +676,85 @@
 
   <script src="main.js"></script>
   <script>
-    // Собираем все src из gallery-item (только основные, не fav)
-    const galleryItems = [...document.querySelectorAll('.gallery-grid .gallery-item[data-src]')];
-    let allImages = galleryItems.map(el => el.dataset.src);
-    let currentIndex = 0;
+    // Состояние пагинации
+    const pageState = {};
 
-    // Предзагрузка соседних картинок
-    function preloadAdjacent(index) {
-      [-1, 1].forEach(offset => {
-        const i = (index + offset + allImages.length) % allImages.length;
-        const img = new Image();
-        img.src = allImages[i];
-      });
+    function goPage(prefix, pageNum) {
+      const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      if (!pages.length) return;
+      pages.forEach(p => p.classList.remove('active'));
+      pages[pageNum].classList.add('active');
+      pageState[prefix] = pageNum;
+      // Кнопки номеров
+      const pag = document.getElementById('pag-' + prefix);
+      if (pag) {
+        pag.querySelectorAll('.page-btn:not([id^="prev"]):not([id^="next"])').forEach((btn, i) => {
+          btn.classList.toggle('active', i === pageNum);
+        });
+        const prev = document.getElementById('prev-' + prefix);
+        const next = document.getElementById('next-' + prefix);
+        if (prev) prev.disabled = pageNum === 0;
+        if (next) next.disabled = pageNum >= pages.length - 1;
+      }
     }
 
-    function openLightbox(src) {
-      currentIndex = allImages.indexOf(src);
-      if (currentIndex === -1) {
-        // Если это fav картинка — просто показываем без листания
-        const lb = document.getElementById('lightbox');
-        const lbImg = document.getElementById('lightbox-img');
-        lbImg.src = src;
-        document.getElementById('lightbox-counter').textContent = '';
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        return;
+    function changePage(prefix, dir) {
+      const cur = pageState[prefix] || 0;
+      const pages = document.querySelectorAll('.gallery-page[data-gallery="' + prefix + '"]');
+      const newPage = cur + dir;
+      if (newPage >= 0 && newPage < pages.length) goPage(prefix, newPage);
+    }
+
+    // Лайтбокс
+    let lightboxImages = [];
+    let lightboxIndex = 0;
+
+    function openLightbox(src, groupType) {
+      if (groupType === 'lena-gallery') {
+        const activePage = document.querySelector('.gallery-page.active[data-gallery="lena"]');
+        lightboxImages = activePage
+          ? [...activePage.querySelectorAll('.gallery-item[data-src]')].map(el => el.dataset.src)
+          : [src];
+      } else if (groupType === 'vasilina-gallery') {
+        const activePage = document.querySelector('.gallery-page.active[data-gallery="vasilina"]');
+        lightboxImages = activePage
+          ? [...activePage.querySelectorAll('.gallery-item[data-src]')].map(el => el.dataset.src)
+          : [src];
+      } else if (groupType === 'lena-fav') {
+        lightboxImages = ['images/lena/lena-fav-1.jpg','images/lena/lena-fav-2.jpg','images/lena/lena-fav-3.jpg'];
+      } else if (groupType === 'lena-nofav') {
+        lightboxImages = ['images/lena/lena-nofav-1.jpg','images/lena/lena-nofav-2.jpg','images/lena/lena-nofav-3.jpg'];
+      } else if (groupType === 'vasilina-fav') {
+        lightboxImages = ['images/vasilina/vasilina-fav-1.jpg','images/vasilina/vasilina-fav-2.jpg','images/vasilina/vasilina-fav-3.jpg'];
+      } else if (groupType === 'vasilina-nofav') {
+        lightboxImages = ['images/vasilina/vasilina-nofav-1.jpg','images/vasilina/vasilina-nofav-2.jpg','images/vasilina/vasilina-nofav-3.jpg'];
+      } else {
+        lightboxImages = [src];
       }
-      showImage(currentIndex);
+
+      lightboxIndex = lightboxImages.indexOf(src);
+      if (lightboxIndex === -1) lightboxIndex = 0;
+
+      showLightboxImage(lightboxIndex);
       document.getElementById('lightbox').classList.add('open');
       document.body.style.overflow = 'hidden';
-      preloadAdjacent(currentIndex);
     }
 
-    function showImage(index) {
+    function showLightboxImage(index) {
       const img = document.getElementById('lightbox-img');
       img.style.opacity = '0';
-      setTimeout(() => {
-        img.src = allImages[index];
+      setTimeout(function() {
+        img.src = lightboxImages[index];
         img.style.opacity = '1';
-      }, 120);
-      document.getElementById('lightbox-counter').textContent =
-        (index + 1) + ' / ' + allImages.length;
-      preloadAdjacent(index);
+      }, 100);
+      const counter = document.getElementById('lightbox-counter');
+      counter.textContent = lightboxImages.length > 1 ? (index + 1) + ' / ' + lightboxImages.length : '';
+      // Предзагрузка соседних
+      [-1, 1].forEach(function(offset) {
+        var i = (index + offset + lightboxImages.length) % lightboxImages.length;
+        var preload = new Image();
+        preload.src = lightboxImages[i];
+      });
     }
 
     function closeLightbox() {
@@ -642,49 +763,41 @@
     }
 
     document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-
-    document.getElementById('lightbox-prev').addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
-      showImage(currentIndex);
+    document.getElementById('lightbox-prev').addEventListener('click', function() {
+      lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+      showLightboxImage(lightboxIndex);
     });
-
-    document.getElementById('lightbox-next').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % allImages.length;
-      showImage(currentIndex);
+    document.getElementById('lightbox-next').addEventListener('click', function() {
+      lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+      showLightboxImage(lightboxIndex);
     });
-
-    document.getElementById('lightbox').addEventListener('click', e => {
+    document.getElementById('lightbox').addEventListener('click', function(e) {
       if (e.target === e.currentTarget) closeLightbox();
     });
 
     // Свайп на мобилке
-    let touchStartX = 0;
-    document.getElementById('lightbox').addEventListener('touchstart', e => {
+    var touchStartX = 0;
+    document.getElementById('lightbox').addEventListener('touchstart', function(e) {
       touchStartX = e.touches[0].clientX;
-    });
-    document.getElementById('lightbox').addEventListener('touchend', e => {
-      const diff = touchStartX - e.changedTouches[0].clientX;
+    }, { passive: true });
+    document.getElementById('lightbox').addEventListener('touchend', function(e) {
+      var diff = touchStartX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) {
         if (diff > 0) {
-          currentIndex = (currentIndex + 1) % allImages.length;
+          lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
         } else {
-          currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+          lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
         }
-        showImage(currentIndex);
+        showLightboxImage(lightboxIndex);
       }
-    });
+    }, { passive: true });
 
-    document.addEventListener('keydown', e => {
+    // Клавиатура
+    document.addEventListener('keydown', function(e) {
       if (!document.getElementById('lightbox').classList.contains('open')) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') {
-        currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
-        showImage(currentIndex);
-      }
-      if (e.key === 'ArrowRight') {
-        currentIndex = (currentIndex + 1) % allImages.length;
-        showImage(currentIndex);
-      }
+      if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length; showLightboxImage(lightboxIndex); }
+      if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % lightboxImages.length; showLightboxImage(lightboxIndex); }
     });
   </script>
 </body>
