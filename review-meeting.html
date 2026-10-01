@@ -197,6 +197,7 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 0.4rem;
     }
+    .gallery-item.loaded .gallery-placeholder { display: none; }
     .gallery-placeholder-icon { font-size: 2rem; opacity: 0.3; }
     .gallery-placeholder-num { font-size: 0.75rem; font-weight: 700; opacity: 0.35; color: var(--ink); }
     .gallery-placeholder-soon { font-size: 0.65rem; opacity: 0.4; color: var(--ink-soft); }
@@ -357,28 +358,28 @@
         </div>
         <span class="gallery-label">Страницы — добавляем по мере раскрашивания</span>
         <div class="gallery-grid" data-gallery="lena">
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-01.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-02.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-03.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-04.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-05.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-06.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-07.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-08.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-09.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-10.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-11.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-12.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-13.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-14.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-15.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-16.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-17.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-18.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-19.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-20.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-21.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/lena-meeting/lena-m-22.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span><span class="gallery-placeholder-soon">скоро</span></div></div>
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые — появятся когда закончим</span>
@@ -412,28 +413,28 @@
         </div>
         <span class="gallery-label">Страницы — добавляем по мере раскрашивания</span>
         <div class="gallery-grid" data-gallery="vasilina">
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-01.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-02.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-03.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-04.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-05.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-06.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-07.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-08.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-09.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-10.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-11.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-12.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-13.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-14.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-15.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-16.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-17.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-18.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-19.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-20.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-21.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span><span class="gallery-placeholder-soon">скоро</span></div></div>
-          <div class="gallery-item" data-src="images/vasilina-meeting/vasilina-m-22.jpg"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">01</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">02</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">03</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">04</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">05</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">06</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">07</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">08</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">09</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">10</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">11</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">12</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">13</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">14</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">15</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">16</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">17</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">18</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">19</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">20</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">21</span><span class="gallery-placeholder-soon">скоро</span></div></div>
+          <div class="gallery-item"><div class="gallery-placeholder"><span class="gallery-placeholder-icon">🖌️</span><span class="gallery-placeholder-num">22</span><span class="gallery-placeholder-soon">скоро</span></div></div>
         </div>
 
         <span class="gallery-label">Любимые и нелюбимые — появятся когда закончим</span>
@@ -573,6 +574,37 @@
       if (nextPage >= 0 && nextPage < pages.length) goPage(prefix, nextPage);
     }
 
+    function loadMeetingGallery(prefix, photoCount) {
+      const grid = document.querySelector('.gallery-grid[data-gallery="' + prefix + '"]');
+      if (!grid) return;
+
+      grid.querySelectorAll('.gallery-item').forEach(function(item, index) {
+        if (index >= photoCount) {
+          item.classList.add('empty');
+          return;
+        }
+
+        const number = String(index + 1).padStart(2, '0');
+        const src = 'images/' + prefix + '-meeting/photo' + (index + 1) + '.webp';
+        const image = document.createElement('img');
+        image.src = src;
+        image.alt = 'Страница ' + number;
+        image.loading = 'lazy';
+        image.addEventListener('load', function() { item.classList.add('loaded'); });
+        image.addEventListener('error', function() {
+          item.classList.remove('loaded');
+          item.classList.add('empty');
+          item.removeAttribute('data-src');
+          image.remove();
+        });
+        item.dataset.src = src;
+        item.classList.remove('empty');
+        item.prepend(image);
+      });
+    }
+
+    loadMeetingGallery('lena', 9);
+    loadMeetingGallery('vasilina', 8);
     rebuildGalleryPages('lena', 6);
     rebuildGalleryPages('vasilina', 6);
 
